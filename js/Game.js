@@ -2,7 +2,6 @@ var GladiatorGame = GladiatorGame || {};
 
 //title screen
 GladiatorGame.Game = function() {};
-console.log('game started');
 GladiatorGame.Game.prototype = {
     create: function() {
         // creating
@@ -33,7 +32,6 @@ GladiatorGame.Game.prototype = {
         this.enemies = this.game.add.physicsGroup(Phaser.Physics.ARCADE);
         this.enemies.enableBody = true;
 
-        // this.enemies.physicsBodyType = Phaser.Physics.ARCADE;
         this.enemies.createMultiple(10, 'enemy');
         this.enemies.setAll('anchor.x', 0.5);
         this.enemies.setAll('anchor.y', 0.5);
@@ -45,7 +43,7 @@ GladiatorGame.Game.prototype = {
         this.scoreString = 'Score: ';
         this.scoreText = this.game.add.text(20,20,this.scoreString + this.score,{font:'34px arial',fill:'#fff'});
         this.scoreText.fixedToCamera = true;
-        
+
         // create playerspawn spot
         var result = this.findObjectsByType('playerStart', this.map, 'objectLayer');
 
@@ -113,7 +111,6 @@ GladiatorGame.Game.prototype = {
         this.game.physics.arcade.overlap(this.player,this.enemies,this.enemyHitsPlayer,null,this);
         // bullet stuff
         if (this.fireButton.isDown) {
-            // this.fireBullet();
             this.fireButton.onDown.add(this.fireBullet, this);
         }
         // enemies random spawn
@@ -125,59 +122,14 @@ GladiatorGame.Game.prototype = {
           this.game.physics.arcade.collide(this.player, this.Enemy);
           this.game.physics.arcade.overlap(this.bullet,this.Enemy,this.collisionHandler,null,this);
           this.game.physics.arcade.moveToObject(this.Enemy,this.player, 80);
-          // this.Enemy.rotation = this.game.physics.angleToPointer(this.player);
         }
-
-
-        // enemy tracking?
-        // var targetAngle = this.game.math.angleBetween(this.Enemy.x, this.Enemy.y, this.player.x, this.player.y);
-        // // // turing the enemy towards player
-        // if (this.Enemy.rotation !== targetAngle) {
-        //     // calculating the differance in angle. current vs target angle
-        //     var delta = targetAngle - this.Enemy.rotation;
-        //     // keep it in range of PI
-        //     if (delta > (Math.PI)) {
-        //         delta -= Math.PI * 2;
-        //     }
-        //     if (delta < (-Math.PI)) {
-        //         delta += Math.PI * 2;
-        //     }
-        //
-        //     if (delta > 0) {
-        //         //turn clockwise
-        //         this.Enemy.angle += this.enemyTurnRate;
-        //     } else {
-        //         this.Enemy.angle -= this.enemyTurnRate;
-        //     }
-            // just sets the angle to the target angle if close enought
-            // if(Math.abs(delta) < this.game.math.degToRad(this.enemyTurnRate)){
-            //   this.Enemy.rotation = targetAngle;
-            // }
-            // this.Enemy.body.velocity.x = Math.cos(this.Enemy.rotation) * this.Enemy.SPEED;
-            // this.Enemy.body.velocity.y = Math.sin(this.Enemy.rotation) * this.Enemy.SPEED;
-            // this.game.physics.arcade.velocityFromAngle(this.Enemy.angle, 200, this.Enemy.body.velocity);
-        // }
     },
     spawnEnemy: function() {
-
       this.Enemy = this.enemies.create(this.game.world.randomX,this.game.world.randomY,'enemy');
-
-
-        //getting first enemy from the group
-        // this.Enemy = this.enemies.getFirstExists(true);
-        // this.Enemy = this.game.add.sprite(this.game.rnd.integerInRange( this.game.width),this.game.rnd.integerInRange(this.game.height),'enemy');
-        // this.Enemy.reset(this.game.rnd.integerInRange(this.game.width), this.game.rnd.integerInRange(this.game.width));
-        // enemy.revive();
-        // this.Enemy.x = this.game.rnd.integerInRange(50, this.game.width);
-        // this.Enemy.y = this.game.rnd.integerInRange(50, this.game.height);
-        // return Enemy;
     },
     fireBullet: function() {
-        // to avoid a fast rate of fire
-        // if (this.game.time.now > this.nextFire && this.bullets.countLiving()<5) {
         // grabing the first bullet
         this.bullet = this.bullets.getFirstExists(false);
-        // console.log(this.bullet);
         if (this.bullet) {
             //fire the bullet!!!
             var bulletOffSet = 20 * Math.sin(this.game.math.degToRad(this.player.angle));
@@ -186,7 +138,6 @@ GladiatorGame.Game.prototype = {
             this.game.physics.arcade.velocityFromAngle(this.bullet.angle, 800, this.bullet.body.velocity);
             this.bulletTime = this.game.time.now + 200;
         }
-        // }
     },
     resetBullet: function(bullet) {
         this.game.bullet.kill();
@@ -199,7 +150,6 @@ GladiatorGame.Game.prototype = {
     },
     enemyHitsPlayer:function(){
       this.player.kill();
-      // this.stateText.visible = true;
       this.game.state.start('EndMenu');
     }
 };

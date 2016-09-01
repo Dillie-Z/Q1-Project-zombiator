@@ -2,7 +2,6 @@ var GladiatorGame = GladiatorGame || {};
 
 GladiatorGame.Boot = function() {};
 
-// console.log('boot started');
 GladiatorGame.Boot.prototype = {
   preload: function() {
     // asset used in the loading screen.
@@ -25,4 +24,3 @@ GladiatorGame.Boot.prototype = {
     this.state.start('Preload');
   }
 };
-// console.log('boot finished');

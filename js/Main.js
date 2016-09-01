@@ -1,6 +1,4 @@
-// $(document).ready(function() {
-  // console.log('main is runing');
-    // creation of the game's 'namespace'
+  // creation of the game's 'namespace'
     var GladiatorGame = GladiatorGame || {};
 
     GladiatorGame.game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'gameDiv');
@@ -12,6 +10,3 @@
     GladiatorGame.game.state.add('EndMenu',GladiatorGame.EndMenu);
 
     GladiatorGame.game.state.start('Boot');
-
-    // console.log(GladiatorGame.game);
-// });

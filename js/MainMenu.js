@@ -20,11 +20,8 @@ GladiatorGame.MainMenu.prototype = {
     this.game.add.text((this.game.world.centerX-180),(this.game.world.centerY+150),this.controlText3,{font:'35px arial',fill:'#fff'});
     this.game.add.text((this.game.world.centerX-180),(this.game.world.centerY+190),this.controlText4,{font:'35px arial',fill:'#fff'});
     this.game.add.text((this.game.world.centerX-180),(this.game.world.centerY+230),this.controlText5,{font:'35px arial',fill:'#fff'});
-
-
   },
   startGame: function(){
     this.game.state.start('Game');
   }
-
 };

@@ -1,7 +1,6 @@
 var GladiatorGame = GladiatorGame || {};
 // loading game assests
 GladiatorGame.Preload = function() {};
-// console.log('preload started');
 
 GladiatorGame.Preload.prototype = {
     preload: function() {
@@ -24,4 +23,3 @@ GladiatorGame.Preload.prototype = {
         this.state.start('MainMenu');
     }
 };
-console.log('preload finished');

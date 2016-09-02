@@ -14,10 +14,10 @@ GladiatorGame.Preload.prototype = {
         this.load.tilemap('gladiator-starting-level', './assets/tilemaps/gladiator-starting-level.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', './assets/tilemaps/tiles.png');
         this.load.image('player', './assets/images/player.png');
-        this.load.image('bullet','./assets/images/bullet.png');
+        this.load.image('bullet', './assets/images/bullet.png');
         this.load.image('enemy', './assets/images/enemy.png');
-        this.load.image('start','./assets/images/start-button.png');
-        this.load.image('retry','./assets/images/retry.png');
+        this.load.image('start', './assets/images/start-button.png');
+        this.load.image('retry', './assets/images/retry.png');
     },
     create: function() {
         this.state.start('MainMenu');

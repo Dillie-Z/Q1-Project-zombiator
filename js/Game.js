@@ -43,8 +43,14 @@ GladiatorGame.Game.prototype = {
         this.killCount = 0;
         this.scoreString = 'Score: ';
         this.killString = 'Total Killed: ';
-        this.scoreText = this.game.add.text(20,20,this.scoreString + this.score,{font:'34px arial',fill:'#fff'});
-        this.killText = this.game.add.text(20,60,this.killString + this.killCount,{font:'34px arial',fill:'#fff'});
+        this.scoreText = this.game.add.text(20, 20, this.scoreString + this.score, {
+            font: '34px arial',
+            fill: '#fff'
+        });
+        this.killText = this.game.add.text(20, 60, this.killString + this.killCount, {
+            font: '34px arial',
+            fill: '#fff'
+        });
         this.scoreText.fixedToCamera = true;
         this.killText.fixedToCamera = true;
 
@@ -112,7 +118,7 @@ GladiatorGame.Game.prototype = {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
         this.game.physics.arcade.collide(this.enemies);
         this.game.physics.arcade.overlap(this.player, null, this);
-        this.game.physics.arcade.overlap(this.player,this.enemies,this.enemyHitsPlayer,null,this);
+        this.game.physics.arcade.overlap(this.player, this.enemies, this.enemyHitsPlayer, null, this);
         // bullet stuff
         if (this.fireButton.isDown) {
             this.fireButton.onDown.add(this.fireBullet, this);
@@ -121,15 +127,15 @@ GladiatorGame.Game.prototype = {
         if (this.enemies.countLiving() < this.maxEnemies) {
             this.spawnEnemy();
         }
-        for(var i = 0; i < this.enemies.children.length;i++){
-          this.Enemy = this.enemies.children[i];
-          this.game.physics.arcade.collide(this.player, this.Enemy);
-          this.game.physics.arcade.overlap(this.bullet,this.Enemy,this.collisionHandler,null,this);
-          this.game.physics.arcade.moveToObject(this.Enemy,this.player, 80);
+        for (var i = 0; i < this.enemies.children.length; i++) {
+            this.Enemy = this.enemies.children[i];
+            this.game.physics.arcade.collide(this.player, this.Enemy);
+            this.game.physics.arcade.overlap(this.bullet, this.Enemy, this.collisionHandler, null, this);
+            this.game.physics.arcade.moveToObject(this.Enemy, this.player, 80);
         }
     },
     spawnEnemy: function() {
-      this.Enemy = this.enemies.create(this.game.world.randomX,this.game.world.randomY,'enemy');
+        this.Enemy = this.enemies.create(this.game.world.randomX, this.game.world.randomY, 'enemy');
     },
     fireBullet: function() {
         // grabing the first bullet
@@ -146,16 +152,16 @@ GladiatorGame.Game.prototype = {
     resetBullet: function(bullet) {
         this.game.bullet.kill();
     },
-    collisionHandler: function(){
-      this.bullet.kill();
-      this.Enemy.kill();
-      this.score += 20;
-      this.killCount += 1;
-      this.scoreText.text = this.scoreString + this.score;
-      this.killText.text = this.killString + this.killCount;
+    collisionHandler: function() {
+        this.bullet.kill();
+        this.Enemy.kill();
+        this.score += 20;
+        this.killCount += 1;
+        this.scoreText.text = this.scoreString + this.score;
+        this.killText.text = this.killString + this.killCount;
     },
-    enemyHitsPlayer:function(){
-      this.player.kill();
-      this.game.state.start('EndMenu');
+    enemyHitsPlayer: function() {
+        this.player.kill();
+        this.game.state.start('EndMenu');
     }
 };

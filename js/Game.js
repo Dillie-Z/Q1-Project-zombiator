@@ -40,9 +40,13 @@ GladiatorGame.Game.prototype = {
         this.maxEnemies = 10;
         // scoreboard time!!!
         this.score = 0;
+        this.killCount = 0;
         this.scoreString = 'Score: ';
+        this.killString = 'Total Killed: ';
         this.scoreText = this.game.add.text(20,20,this.scoreString + this.score,{font:'34px arial',fill:'#fff'});
+        this.killText = this.game.add.text(20,60,this.killString + this.killCount,{font:'34px arial',fill:'#fff'});
         this.scoreText.fixedToCamera = true;
+        this.killText.fixedToCamera = true;
 
         // create playerspawn spot
         var result = this.findObjectsByType('playerStart', this.map, 'objectLayer');
@@ -146,7 +150,9 @@ GladiatorGame.Game.prototype = {
       this.bullet.kill();
       this.Enemy.kill();
       this.score += 20;
+      this.killCount += 1;
       this.scoreText.text = this.scoreString + this.score;
+      this.killText.text = this.killString + this.killCount;
     },
     enemyHitsPlayer:function(){
       this.player.kill();
